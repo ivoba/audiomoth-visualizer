@@ -1,0 +1,8 @@
+version: "3"
+services:
+  birdnet:
+    image: breallis/birdnet:cpu
+    volumes:
+      - ../files/Kloster-Burbach:/audio
+    stdin_open: true
+    tty: true

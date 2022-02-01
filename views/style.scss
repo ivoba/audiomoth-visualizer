@@ -1,0 +1,56 @@
+// Override default variables
+$primary-500: rgba(0, 175.49, 65.515, 1);
+$primary-600: rgba(0, 175.49, 65.515, 1);
+$primary-700: rgba(0, 175.49, 65.515, 1);
+
+// Import full Pico source code
+@import "../node_modules/@picocss/pico/scss/pico";
+@import "../node_modules/perfundo/scss/index.scss";
+
+body>nav ul:first-of-type li:first-of-type svg {
+  height: 3.5rem;
+}
+
+nav {
+  &.head {
+    background-color: lightgray;
+  }
+}
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  article {
+    flex: 1 0 500px;
+    box-sizing: border-box;
+    margin: 1rem .25em;
+    max-width: 400px;
+    text-align: center;
+    header, footer {
+      padding: calc(var(--block-spacing-vertical) / 2.5) var(--block-spacing-horizontal);
+    }
+    .video {
+      display: flex;
+    }
+    video {
+      background-color: black;
+    }
+    .video-annotate {
+      color: white;
+      padding: 15px;
+      background-color: rgba(0, 0, 0, 0.9);
+      font-weight: normal;
+      text-align: left;
+      .strong {
+        font-weight: bold;
+      }
+    }
+    footer {
+      font-size: 0.8rem;
+      text-align: left;
+      .strong {
+        font-weight: bold;
+      }
+    }
+  }
+}

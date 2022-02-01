@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>Audiomoth Spectogram Generator</title>
+</head>
+<body>
+<nav class="container-fluid head">
+    <ul>
+        <li>
+            <svg id="sw-js-blob-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">
+                        <stop id="stop1" stop-color="rgba(21.076, 239.24, 13.591, 0.52)" offset="0%"></stop>
+                        <stop id="stop2" stop-color="rgba(0, 175.49, 65.515, 1)" offset="100%"></stop>
+                    </linearGradient>
+                </defs>
+                <path fill="url(#sw-gradient)"
+                      d="M16.2,-21.3C21.3,-15,26.2,-10.2,28.1,-4.2C30,1.7,29,8.9,25.6,14.9C22.3,20.8,16.6,25.5,10.4,27C4.2,28.5,-2.5,26.9,-11,25.8C-19.6,24.6,-29.9,23.9,-34,18.7C-38.1,13.5,-36,3.8,-33.8,-5.5C-31.6,-14.8,-29.4,-23.6,-23.8,-29.9C-18.1,-36.1,-9.1,-39.8,-1.8,-37.7C5.5,-35.6,11,-27.6,16.2,-21.3Z"
+                      width="100%" height="100%" transform="translate(50 50)" stroke-width="0"
+                      style="transition: all 0.3s ease 0s;" stroke="url(#sw-gradient)"></path>
+            </svg>
+        </li>
+        <li>Audiomoth Spectogram Generator</li>
+    </ul>
+    <ul>
+        <li>
+<!--            <a href="#">Imprint</a>-->
+        </li>
+    </ul>
+</nav>
+<main class="container-fluid">
+    <h2 style="text-align: center">{{ title }}</h2>
+    <div class="grid cards">
+        <each loop="file, index in files">
+            <article>
+                <header>
+                    <div>{{index + 1}}. {{file.audio}}</div>
+                    <small><time dateformat datetime="{{file.record_date}}">{{file.record_date}}</time></small>
+                </header>
+                <a href="#perfundo-{{index}}">
+                    <img src="{{ file.thumb }}" width="300" height="169" alt="{{file.record_date}}" loading="lazy"/>
+                </a>
+                <div id="perfundo-{{index}}" class="perfundo__overlay bounceIn qa-hero-overlay">
+                    <div class="video">
+                        <video width="1136" height="642" controls preload="none" poster="{{ file.thumb }}">
+                            <source src="{{ file.movie }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <if condition="file.birdnet">
+                            <div class="video-annotate">
+                            <each loop="birds, seconds in file.birdnet">
+                                <div class="strong">Seconds {{seconds}}:</div>
+                                <each loop="bird in birds">
+                                    {{bird.rank}}: {{bird.specie}}<br/>
+                                </each>
+                            </each>
+                            </div>
+                        </if>
+                        <a href="#perfundo-untarget" class="perfundo__close perfundo__control">Close</a>
+                    </div>
+                </div>
+                <footer>
+                    <if condition="file.birdnet">
+                        <each loop="birds, seconds in file.birdnet">
+                            <div class="strong">Seconds {{seconds}}:</div>
+                            <each loop="bird in birds">
+                                {{bird.rank}}: {{bird.specie}}<br/>
+                            </each>
+                        </each>
+                    </if>
+                </footer>
+            </article>
+            <if condition="(index + 1) % 4 === 0">
+                <br/>
+            </if>
+        </each>
+    </div>
+</main>
+<footer class="container-fluid">
+    <nav>
+        <ul>
+            <li><strong>© Ivo Bathke</strong></li>
+        </ul>
+        <ul>
+            <li><a href="#">Imprint</a></li>
+        </ul>
+    </nav>
+</footer>
+</body>
+</html>
