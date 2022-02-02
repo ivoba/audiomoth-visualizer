@@ -18,7 +18,7 @@ Birdnet detection software will run inside a docker container.
 
 Clone this repository:
 
-    git clone reponame
+    git clone git@github.com:ivoba/audiomoth-zx.git
 
 Install dependencies:
 
@@ -44,12 +44,16 @@ Birdnet detection:
 
     node_modules/.bin/zx birdnet.mjs <path-to/my-audiomoth-session>
 
-### Todo
+## Credits
+Heavily inspired by:  
+https://github.com/nwolek/audiomoth-scripts
 
-- close button perfundo stop video
+## Todo
+
+- responsive images
+- responsive video
 - upload to npm
 - use npx
 - tests
-- docker volume dynamically
 - move audiofiles to audio dir? maybe as option
 - move improved designs from symfony

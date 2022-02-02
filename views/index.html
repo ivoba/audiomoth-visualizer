@@ -45,7 +45,7 @@
                 </a>
                 <div id="perfundo-{{index}}" class="perfundo__overlay bounceIn qa-hero-overlay">
                     <div class="video">
-                        <video width="1136" height="642" controls preload="none" poster="{{ file.thumb }}">
+                        <video id="vid_{{ index }}" width="1136" height="642" controls preload="none" poster="{{ file.thumb }}">
                             <source src="{{ file.movie }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -59,7 +59,7 @@
                             </each>
                             </div>
                         </if>
-                        <a href="#perfundo-untarget" class="perfundo__close perfundo__control">Close</a>
+                        <a href="#perfundo-untarget" class="perfundo__close perfundo__control" onclick="document.getElementById('vid_{{ index }}').pause();">Close</a>
                     </div>
                 </div>
                 <footer>

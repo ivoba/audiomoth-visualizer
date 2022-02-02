@@ -1,3 +1,4 @@
+# for dev purposes
 version: "3"
 services:
   birdnet:
