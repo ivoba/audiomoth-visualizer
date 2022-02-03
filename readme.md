@@ -1,10 +1,10 @@
 # Audiomoth Visualizer
 
 Node.js pipeline for spectrograms creation and [Birdnet](https://github.com/kahst/BirdNET) detection for your [Audiomoth](https://www.openacousticdevices.info/audiomoth) sessions.  
-It will create a movie per audiofile with a spectrogram as image.  
-The HTML page lists all movies and adds birdnet detection.
+It will create a movie per audiofile with a spectrogram as image and utilizes birdnet AI to detect bird species.  
+The HTML page lists all movies and renders the birdnet detections.
 
-Todo screenshot
+![](audiomoth-visualizer.png)
 
 ## Installation
 
@@ -45,6 +45,7 @@ Birdnet detection:
     node_modules/.bin/zx birdnet.mjs <path-to/my-audiomoth-session>
 
 ## Credits
+
 Heavily inspired by:  
 https://github.com/nwolek/audiomoth-scripts
 
@@ -52,8 +53,13 @@ https://github.com/nwolek/audiomoth-scripts
 
 - responsive images
 - responsive video
+- download links for audio & video
 - upload to npm
 - use npx
+  Running on-demand:
+  npx audiomoth-visualizer <path-to/my-audiomoth-session>
+  Using npx you can run the script without installing it first
+  Globally via npm
+  npm install --global
 - tests
 - move audiofiles to audio dir? maybe as option
-- audiofiles are touched somehow and timestamp is updated -> fix

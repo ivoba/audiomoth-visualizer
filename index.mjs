@@ -55,15 +55,12 @@ const createMovieFrames = async (
       `making spectrogram from ${i} to ${i + thumbMaxDuration} seconds...`
     );
     // generate the initial .png spectrogram output from sox
-    await $`sox ${file} -n rate 24k trim ${i} ${thumbMaxDuration} spectrogram -x 1136 -y 642 -z 96 -w hann -o ${frameImage}`;
-    // todo see if we can pipe the sox output
-    // await $`cat file.txt`.pipe(process.stdout)
-
-    // extend the .png canvas size to match 720p dimensions and make room for text
-    await $`convert ${frameImage} -background black -gravity north -extent 1280x720 ${frameImage}`;
-    // add text to the bottom of the .png image
     let annotation = `${title}\n ${date.mtime.toISOString()}`;
-    await $`convert ${frameImage} -gravity south -fill white -pointsize 36 -annotate +0+10 ${annotation} ${frameImage}`;
+    await $`sox ${file} -n rate 24k trim 0 10 spectrogram -x 1136 -y 642 -z 96 -w hann -o -`.
+      //extend image with black background
+      pipe($`convert PNG:- -background black -gravity north -extent 1280x820 -`).
+      //add text to bottom of image
+      pipe($`convert PNG:- -gravity south -fill white -pointsize 36 -annotate +0+10 ${annotation} ${frameImage}`);
     imageCount++;
   }
   const firstFrame = `${dir}/tmp_${baseFileName}0.png`;
@@ -121,7 +118,7 @@ await birdnet(dir, "birdnet");
 import { updateManifestWithBirdnetData } from "./lib/birdnetManifest.mjs";
 
 await updateManifestWithBirdnetData(
-  "./files/Kloster-Burbach/20210524_040000.WAV",
+  dir,
   manifest
 );
 await fs.writeJson(`${dir}/manifest.json`, manifest);
