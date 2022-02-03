@@ -8,12 +8,24 @@ $primary-700: rgba(0, 175.49, 65.515, 1);
 @import "../node_modules/perfundo/scss/index.scss";
 
 body>nav ul:first-of-type li:first-of-type svg {
-  height: 3.5rem;
+  height: 1.5rem;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+
+  background: $primary-500;
+  color: white;
+  text-align: center;
+  display: inline-block;
 }
 
 nav {
   &.head {
     background-color: lightgray;
+    height: 40px;
   }
 }
 .cards {

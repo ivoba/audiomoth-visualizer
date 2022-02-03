@@ -1,4 +1,4 @@
-# Audiomoth Spectogram Generator
+# Audiomoth Visualizer
 
 Node.js pipeline for spectrograms creation and [Birdnet](https://github.com/kahst/BirdNET) detection for your [Audiomoth](https://www.openacousticdevices.info/audiomoth) sessions.  
 It will create a movie per audiofile with a spectrogram as image.  
@@ -56,4 +56,4 @@ https://github.com/nwolek/audiomoth-scripts
 - use npx
 - tests
 - move audiofiles to audio dir? maybe as option
-- move improved designs from symfony
+- audiofiles are touched somehow and timestamp is updated -> fix
