@@ -63,3 +63,5 @@ https://github.com/nwolek/audiomoth-scripts
   npm install --global
 - tests
 - move audiofiles to audio dir? maybe as option
+  source & dest
+- locale & timezone params

@@ -56,11 +56,15 @@ const createMovieFrames = async (
     );
     // generate the initial .png spectrogram output from sox
     let annotation = `${title}\n ${date.mtime.toISOString()}`;
-    await $`sox ${file} -n rate 24k trim 0 10 spectrogram -x 1136 -y 642 -z 96 -w hann -o -`.
+    await $`sox ${file} -n rate 24k trim 0 10 spectrogram -x 1136 -y 642 -z 96 -w hann -o -`
       //extend image with black background
-      pipe($`convert PNG:- -background black -gravity north -extent 1280x820 -`).
+      .pipe(
+        $`convert PNG:- -background black -gravity north -extent 1280x820 -`
+      )
       //add text to bottom of image
-      pipe($`convert PNG:- -gravity south -fill white -pointsize 36 -annotate +0+10 ${annotation} ${frameImage}`);
+      .pipe(
+        $`convert PNG:- -gravity south -fill white -pointsize 36 -annotate +0+10 ${annotation} ${frameImage}`
+      );
     imageCount++;
   }
   const firstFrame = `${dir}/tmp_${baseFileName}0.png`;
@@ -117,10 +121,7 @@ await birdnet(dir, "birdnet");
 
 import { updateManifestWithBirdnetData } from "./lib/birdnetManifest.mjs";
 
-await updateManifestWithBirdnetData(
-  dir,
-  manifest
-);
+await updateManifestWithBirdnetData(dir, manifest);
 await fs.writeJson(`${dir}/manifest.json`, manifest);
 
 import { generateHTML } from "./lib/html.mjs";
