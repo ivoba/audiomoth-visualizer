@@ -33,7 +33,7 @@
         <each loop="file, index in files">
             <article>
                 <header>
-                    <div><span class="circle">{{index + 1}}</span> {{file.audio}}</div>
+                    <div><span class="circle">{{index + 1}}</span> {{file.audio}} <a href="{{ file.movie }}" title="Download Movie File" download>⬇</a></div>
                     <small><time dateformat datetime="{{file.record_date}}">{{file.record_date}}</time></small>
                 </header>
                 <a href="#perfundo-{{index}}">

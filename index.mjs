@@ -3,11 +3,14 @@
 const path = require("path");
 
 const dir = argv._[1];
+
 if (!fs.existsSync(dir)) {
   console.log("no such dir ", dir);
   process.exit(1);
 }
 const title = !!argv._[2] ? argv._[2] : "";
+const locale = !!argv._[3] ? argv._[3] : "de-DE";
+const timeZone = !!argv._[4] ? argv._[4] : "Europe/Berlin";
 
 const allFiles = fs.readdirSync(dir);
 let files = allFiles.filter(function (elm) {
@@ -35,6 +38,8 @@ const manifest = {
     lat: 0,
     lng: 0,
   },
+  locale: locale,
+  time_zone: timeZone,
   files: [],
 };
 

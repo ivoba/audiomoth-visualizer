@@ -53,7 +53,6 @@ https://github.com/nwolek/audiomoth-scripts
 
 - responsive images
 - responsive video
-- download links for audio & video
 - upload to npm
 - use npx
   Running on-demand:
@@ -64,4 +63,3 @@ https://github.com/nwolek/audiomoth-scripts
 - tests
 - move audiofiles to audio dir? maybe as option
   source & dest
-- locale & timezone params
