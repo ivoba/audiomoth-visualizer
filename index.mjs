@@ -1,28 +1,42 @@
 #!/usr/bin/env zx
 
 const path = require("path");
+const os = require("os");
+import { createMovieFrames } from "./lib/movieFrames.mjs";
+import { birdnet } from "./lib/birdnet.mjs";
+import { updateManifestWithBirdnetData } from "./lib/birdnetManifest.mjs";
+import { generateHTML } from "./lib/html.mjs";
 
 const dir = argv._[1];
+const dest = path.resolve(argv._[2] ?? dir);
 
 if (!fs.existsSync(dir)) {
   console.log("no such dir ", dir);
   process.exit(1);
 }
-const title = !!argv._[2] ? argv._[2] : "";
-const locale = !!argv._[3] ? argv._[3] : "de-DE";
-const timeZone = !!argv._[4] ? argv._[4] : "Europe/Berlin";
+const title = argv.title ?? "";
+const locale = argv.locale ?? "de-DE";
+const timeZone = argv.timezone ?? "Europe/Berlin";
 
 const allFiles = fs.readdirSync(dir);
 let files = allFiles.filter(function (elm) {
   return elm.match(/.*\.(WAV)/gi);
 });
+const audiosDir = "audios";
 const imagesDir = "images";
 const thumbsDir = "thumbs";
 const moviesDir = "movies";
-const imagesPath = `${dir}/${imagesDir}`;
-const thumbsPath = `${dir}/${imagesDir}/${thumbsDir}`;
-const moviesPath = `${dir}/${moviesDir}`;
+const audiosPath = `${dest}/${audiosDir}`;
+const imagesPath = `${dest}/${imagesDir}`;
+const thumbsPath = `${dest}/${imagesDir}/${thumbsDir}`;
+const moviesPath = `${dest}/${moviesDir}`;
 
+if (!fs.existsSync(dest)) {
+  fs.mkdirSync(dest);
+}
+if (!fs.existsSync(audiosPath)) {
+  fs.mkdirSync(audiosPath);
+}
 if (!fs.existsSync(imagesPath)) {
   fs.mkdirSync(imagesPath);
 }
@@ -43,42 +57,11 @@ const manifest = {
   files: [],
 };
 
-const createMovieFrames = async (
-  dir,
-  file,
-  baseFileName,
-  totalDuration,
-  thumbMaxDuration,
-  title,
-  date,
-  thumb
-) => {
-  let imageCount = 0;
-  for (let i = 0; i < totalDuration; i = i + thumbMaxDuration) {
-    let frameImage = `${dir}/tmp_${baseFileName}${imageCount}.png`;
-    console.log(
-      `making spectrogram from ${i} to ${i + thumbMaxDuration} seconds...`
-    );
-    // generate the initial .png spectrogram output from sox
-    let annotation = `${title}\n ${date.mtime.toISOString()}`;
-    await $`sox ${file} -n rate 24k trim 0 10 spectrogram -x 1136 -y 642 -z 96 -w hann -o -`
-      //extend image with black background
-      .pipe(
-        $`convert PNG:- -background black -gravity north -extent 1280x820 -`
-      )
-      //add text to bottom of image
-      .pipe(
-        $`convert PNG:- -gravity south -fill white -pointsize 36 -annotate +0+10 ${annotation} ${frameImage}`
-      );
-    imageCount++;
-  }
-  const firstFrame = `${dir}/tmp_${baseFileName}0.png`;
-  await $`convert ${firstFrame} -resize 300x170 ${thumb}`;
-};
-
 await Promise.all(
   files.map(async (audioFile) => {
     let file = `${dir}/${audioFile}`;
+    let destAudioFile = `${audiosDir}/${audioFile}`;
+    fs.copyFileSync(file, `${dest}/${destAudioFile}`);
     let baseFileName = path.basename(`${dir}/${file}`, ".WAV");
     let thumbFile = `${baseFileName}.png`;
     let thumb = `${thumbsPath}/${thumbFile}`;
@@ -108,7 +91,7 @@ await Promise.all(
       .map((f) => fs.unlinkSync(`${dir}/${f}`));
     manifest.files.push({
       base: baseFileName,
-      audio: `${audioFile}`,
+      audio: `${destAudioFile}`,
       thumb: `${imagesDir}/${thumbsDir}/${thumbFile}`,
       movie: `${moviesDir}/${movieFile}`,
       record_date: date.mtime.toISOString(),
@@ -116,21 +99,16 @@ await Promise.all(
   })
 );
 
-// sort manifest
+// sort files in manifest
 manifest.files.sort((a, b) =>
   a.audio > b.audio ? 1 : b.audio > a.audio ? -1 : 0
 );
 
-import { birdnet } from "./lib/birdnet.mjs";
-await birdnet(dir, "birdnet");
+await birdnet(dest, audiosDir, "birdnet");
 
-import { updateManifestWithBirdnetData } from "./lib/birdnetManifest.mjs";
+await updateManifestWithBirdnetData(dest, manifest);
+await fs.writeJson(`${dest}/manifest.json`, manifest);
 
-await updateManifestWithBirdnetData(dir, manifest);
-await fs.writeJson(`${dir}/manifest.json`, manifest);
-
-import { generateHTML } from "./lib/html.mjs";
-
-await generateHTML(dir);
+await generateHTML(dest);
 
 console.log("Done");

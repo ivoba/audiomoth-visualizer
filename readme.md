@@ -26,7 +26,7 @@ Install dependencies:
 
 ## Usage
 
-    node_modules/.bin/zx index.mjs <path-to/my-audiomoth-session>
+    node_modules/.bin/zx index.mjs <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin
 
 Then open the generated `files/my-audiomoth-session/index.html` in your favorite Browser by doubleclick or via console:
 
