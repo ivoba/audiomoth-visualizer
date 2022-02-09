@@ -1,14 +1,15 @@
-#!/usr/bin/env zx
+#!/usr/bin/env node
 
-const path = require("path");
-const os = require("os");
+import * as path from "path";
+import { $ } from "zx";
+import "zx/globals";
 import { createMovieFrames } from "./lib/movieFrames.mjs";
 import { birdnet } from "./lib/birdnet.mjs";
 import { updateManifestWithBirdnetData } from "./lib/birdnetManifest.mjs";
 import { generateHTML } from "./lib/html.mjs";
 
-const dir = argv._[1];
-const dest = path.resolve(argv._[2] ?? dir);
+const dir = argv._[0];
+const dest = path.resolve(argv._[1] ?? dir);
 
 if (!fs.existsSync(dir)) {
   console.log("no such dir ", dir);
@@ -22,6 +23,11 @@ const allFiles = fs.readdirSync(dir);
 let files = allFiles.filter(function (elm) {
   return elm.match(/.*\.(WAV)/gi);
 });
+if (files.length == 0) {
+  console.log("no files found", dir);
+  process.exit(1);
+}
+
 const audiosDir = "audios";
 const imagesDir = "images";
 const thumbsDir = "thumbs";

@@ -61,8 +61,14 @@ https://github.com/nwolek/audiomoth-scripts
   Running on-demand:
   npx audiomoth-visualizer <path-to/my-audiomoth-session>
   Using npx you can run the script without installing it first
-  Globally via npm
-  npm install --global
+- Globally via npm
+  `npm install --global zx audiomoth-visualizer`  
+  This would require google/zx also to be installed globally
+- docker image in npx? will the image be pulled?
+- docker user permissions on birdnet files
+  ` --user $(id -u):$(id -g)`
+  user should be used in docker image
+- --lat 42.479 --lon -76.451 --week 12 to filter species names
 - tests
 - move audiofiles to audio dir? maybe as option
   source & dest
