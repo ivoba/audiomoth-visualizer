@@ -18,7 +18,7 @@ Birdnet detection software will run inside a docker container.
 
 Clone this repository:
 
-    git clone git@github.com:ivoba/audiomoth-zx.git
+    git clone git@github.com:ivoba/audiomoth-visualizer.git
 
 Install dependencies:
 
