@@ -53,6 +53,8 @@ https://github.com/nwolek/audiomoth-scripts
 
 - responsive images
 - responsive video
+- github actions CI
+- changelog
 - upload to npm
 - use npx
   Running on-demand:

@@ -1,8 +1,8 @@
 {
   "name": "audiomoth-visualizer",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Pipeline for spectrograms and birdnet detection for audiomoth sessions.",
-  "main": "index.mjs",
+  "main": "./index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"**/*.{js,mjs,json,md}\"",
@@ -14,7 +14,6 @@
     "birdnet"
   ],
   "author": "Ivo Bathke",
-  "main": "./index.mjs",
   "bin": {
     "audiomoth-visualizer": "index.mjs"
   },
@@ -34,9 +33,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivoba/audiomoth-visualizer"
+    "url": "git+https://github.com/ivoba/audiomoth-visualizer.git"
   },
   "devDependencies": {
     "prettier": "^2.5.1"
+  },
+  "bugs": {
+    "url": "https://github.com/ivoba/audiomoth-visualizer/issues"
+  },
+  "homepage": "https://github.com/ivoba/audiomoth-visualizer#readme",
+  "directories": {
+    "lib": "lib"
   }
 }
