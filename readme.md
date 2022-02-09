@@ -16,6 +16,28 @@ On Linux install it like this:
 For docker installation see here: https://docs.docker.com/engine/install/.  
 Birdnet detection software will run inside a docker container.
 
+## Usage
+
+#### Globally via npm
+
+Install:
+
+    npm install --global audiomoth-visualizer
+
+Run:
+
+    audiomoth-visualizer <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin
+
+#### Running on-demand:
+
+Run:
+
+    npx audiomoth-visualizer <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin
+
+Using npx you can run the script without installing it first.
+
+#### Local dev environment
+
 Clone this repository:
 
     git clone git@github.com:ivoba/audiomoth-visualizer.git
@@ -24,9 +46,7 @@ Install dependencies:
 
     npm i
 
-## Usage
-
-    node_modules/.bin/zx index.mjs <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin
+    node index.mjs <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin
 
 Then open the generated `files/my-audiomoth-session/index.html` in your favorite Browser by doubleclick or via console:
 
@@ -53,22 +73,12 @@ https://github.com/nwolek/audiomoth-scripts
 
 - responsive images
 - responsive video
-- github actions CI
 - changelog
 - release-it
-- upload to npm
-- use npx
-  Running on-demand:
-  npx audiomoth-visualizer <path-to/my-audiomoth-session>
-  Using npx you can run the script without installing it first
-- Globally via npm
-  `npm install --global zx audiomoth-visualizer`  
-  This would require google/zx also to be installed globally
 - docker image in npx? will the image be pulled?
 - docker user permissions on birdnet files
   ` --user $(id -u):$(id -g)`
   user should be used in docker image
 - --lat 42.479 --lon -76.451 --week 12 to filter species names
 - tests
-- move audiofiles to audio dir? maybe as option
-  source & dest
+- option to open up index.html in browser: https://www.npmjs.com/package/open

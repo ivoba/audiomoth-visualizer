@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import * as path from "path";
-import { $ } from "zx";
 import "zx/globals";
 import { createMovieFrames } from "./lib/movieFrames.mjs";
 import { birdnet } from "./lib/birdnet.mjs";
@@ -117,4 +116,4 @@ await fs.writeJson(`${dest}/manifest.json`, manifest);
 
 await generateHTML(dest);
 
-console.log("Done");
+console.log("Done: file://" + dest + "/index.html");
