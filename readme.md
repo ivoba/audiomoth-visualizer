@@ -1,10 +1,12 @@
 # Audiomoth Visualizer
 
-Node.js pipeline for spectrograms creation and [Birdnet](https://github.com/kahst/BirdNET) detection for your [Audiomoth](https://www.openacousticdevices.info/audiomoth) sessions.  
+Node.js pipeline in the console for spectrograms creation and [Birdnet](https://github.com/kahst/BirdNET) detection for your [Audiomoth](https://www.openacousticdevices.info/audiomoth) sessions.  
 It will create a movie per audiofile with a spectrogram as image and utilizes birdnet AI to detect bird species.  
 The HTML page lists all movies and renders the birdnet detections.
 
 ![](audiomoth-visualizer.png)
+
+![](asciinema.svg)
 
 ## Installation
 
@@ -81,4 +83,3 @@ https://github.com/nwolek/audiomoth-scripts
   user should be used in docker image
 - --lat 42.479 --lon -76.451 --week 12 to filter species names
 - tests
-- option to open up index.html in browser: https://www.npmjs.com/package/open
