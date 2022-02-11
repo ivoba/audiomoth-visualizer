@@ -81,5 +81,5 @@ https://github.com/nwolek/audiomoth-scripts
 - docker user permissions on birdnet files
   ` --user $(id -u):$(id -g)`
   user should be used in docker image
-- --lat 42.479 --lon -76.451 --week 12 to filter species names
+- --lat 42.479 --lon -76.451 to filter species names
 - tests
