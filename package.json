@@ -5,7 +5,8 @@
   "main": "./index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write \"**/*.{js,mjs,json,md}\""
+    "format": "prettier --write \"**/*.{js,mjs,json,md}\"",
+    "release": "release-it"
   },
   "keywords": [
     "audiomoth",
@@ -36,7 +37,8 @@
     "url": "git+https://github.com/ivoba/audiomoth-visualizer.git"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "release-it": "^14.12.4"
   },
   "bugs": {
     "url": "https://github.com/ivoba/audiomoth-visualizer/issues"

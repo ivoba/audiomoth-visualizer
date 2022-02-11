@@ -76,7 +76,6 @@ https://github.com/nwolek/audiomoth-scripts
 - responsive images
 - responsive video
 - changelog
-- release-it
 - docker image in npx? will the image be pulled?
 - docker user permissions on birdnet files
   ` --user $(id -u):$(id -g)`
