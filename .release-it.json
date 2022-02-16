@@ -2,7 +2,6 @@
   "requireCleanWorkingDir": false,
   "requireUpstream": false,
   "git": {
-    "tagName": "%s",
     "commitMessage": "chore: release ${version}"
   },
   "npm": {

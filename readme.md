@@ -75,10 +75,8 @@ https://github.com/nwolek/audiomoth-scripts
 
 - responsive images
 - responsive video
-- changelog
 - docker image in npx? will the image be pulled?
 - docker user permissions on birdnet files
   ` --user $(id -u):$(id -g)`
   user should be used in docker image
-- --lat 42.479 --lon -76.451 to filter species names
 - tests
