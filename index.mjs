@@ -6,6 +6,7 @@ import { createMovieFrames } from "./lib/movieFrames.mjs";
 import { birdnet } from "./lib/birdnet.mjs";
 import { updateManifestWithBirdnetData } from "./lib/birdnetManifest.mjs";
 import { generateHTML } from "./lib/html.mjs";
+import StaticMaps from "staticmaps";
 
 const dir = argv._[0];
 const dest = path.resolve(argv._[1] ?? dir);
@@ -17,6 +18,8 @@ if (!fs.existsSync(dir)) {
 const title = argv.title ?? "";
 const locale = argv.locale ?? "de-DE";
 const timeZone = argv.timezone ?? "Europe/Berlin";
+const lat = argv.lat ?? null;
+const lng = argv.lng ?? null;
 
 const allFiles = fs.readdirSync(dir);
 let files = allFiles.filter(function (elm) {
@@ -51,11 +54,32 @@ if (!fs.existsSync(thumbsPath)) {
 if (!fs.existsSync(moviesPath)) {
   fs.mkdirSync(moviesPath);
 }
+
+let map;
+if (lat && lng) {
+  map = new StaticMaps({
+    width: 400,
+    height: 200,
+  });
+  const marker = {
+    img: new URL(`./views/marker.png`, import.meta.url).pathname,
+    offsetX: 12,
+    offsetY: 48,
+    width: 24,
+    height: 24,
+    coord: [lng, lat],
+  };
+  map.addMarker(marker);
+  await map.render([lng, lat], 13);
+  await map.image.save(`${dest}/map.png`, { compressionLevel: 9 });
+}
+
 const manifest = {
   title: title,
   location: {
-    lat: 0,
-    lng: 0,
+    lat: lat,
+    lng: lng,
+    map_image: map,
   },
   locale: locale,
   time_zone: timeZone,

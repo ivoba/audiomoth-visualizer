@@ -28,13 +28,13 @@ Install:
 
 Run:
 
-    audiomoth-visualizer <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin
+    audiomoth-visualizer <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin --lat=50.8754444 --lng=6.8380488
 
 #### Running on-demand:
 
 Run:
 
-    npx audiomoth-visualizer <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin
+    npx audiomoth-visualizer <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin --lat=50.8754444 --lng=6.8380488
 
 Using npx you can run the script without installing it first.
 
@@ -48,7 +48,7 @@ Install dependencies:
 
     npm i
 
-    node index.mjs <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin
+    node index.mjs <path-to/my-audiomoth-session> <destination-dir> --title="Session title" --locale=de-DE --timezone=Europe/Berlin --lat=50.8754444 --lng=6.8380488
 
 Then open the generated `files/my-audiomoth-session/index.html` in your favorite Browser by doubleclick or via console:
 

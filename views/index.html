@@ -27,8 +27,19 @@
     </ul>
 </nav>
 <main class="container-fluid">
-    <h2 style="text-align: center; margin-bottom: 2px;">{{ title }}</h2>
-    <div style="text-align: center"><span firstDate>{{files}}</span> - <span lastDate>{{files}}</span></div>
+    <div class="grid">
+    <div>&nbsp;</div>
+    <div>
+        <h2 style="margin-bottom: 2px;">{{ title }}</h2>
+        <div><span firstDate>{{files}}</span> - <span lastDate>{{files}}</span></div>
+    </div>
+    <if condition="location.lat">
+    <div>
+        <img src="./map.png" alt="{{location.lat}},{{location.lng}}">
+    </div>
+    </if>
+    <div>&nbsp;</div>
+    </div>
     <div class="grid cards">
         <each loop="file, index in files">
             <article>

@@ -27,6 +27,7 @@
     "posthtml-content": "0.0.3",
     "posthtml-expressions": "^1.7.1",
     "sass": "^1.36.0",
+    "staticmaps": "^1.8.0",
     "zx": "^4.3.0"
   },
   "engines": {
