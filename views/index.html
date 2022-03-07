@@ -42,17 +42,19 @@
     </div>
     <div class="grid cards">
         <each loop="file, index in files">
-            <article>
+            <article id="track-{{index + 1}}">
                 <header>
-                    <div><span class="circle">{{index + 1}}</span> {{file.base}} <a href="{{ file.movie }}" title="Download Movie File" download>⬇</a><a href="{{ file.audio }}" title="Download Audio File" download>🎵</a></div>
+                    <div>
+                        <a href="#track-{{index + 1}}"><span class="circle">{{index + 1}}</span></a> {{file.base}} <a href="{{ file.movie }}" title="Download Movie File" download>⬇</a><a href="{{ file.audio }}" title="Download Audio File" download>🎵</a>
+                    </div>
                     <small><time dateformat datetime="{{file.record_date}}">{{file.record_date}}</time></small>
                 </header>
-                <a href="#perfundo-{{index}}">
+                <a href="#perfundo-{{ index + 1 }}">
                     <img src="{{ file.thumb }}" width="300" height="169" alt="{{file.record_date}}" loading="lazy"/>
                 </a>
-                <div id="perfundo-{{index}}" class="perfundo__overlay bounceIn qa-hero-overlay">
+                <div id="perfundo-{{ index + 1 }}" class="perfundo__overlay bounceIn qa-hero-overlay">
                     <div class="video">
-                        <video id="vid_{{ index }}" width="1136" height="642" controls preload="none" poster="{{ file.thumb }}">
+                        <video id="vid_{{ index + 1 }}" width="1136" height="642" controls preload="none" poster="{{ file.thumb }}">
                             <source src="{{ file.movie }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -66,7 +68,7 @@
                             </each>
                             </div>
                         </if>
-                        <a href="#perfundo-untarget" class="perfundo__close perfundo__control" onclick="document.getElementById('vid_{{ index }}').pause();">Close</a>
+                        <a href="#perfundo-untarget" class="perfundo__close perfundo__control" onclick="document.getElementById('vid_{{ index + 1 }}').pause();">Close</a>
                     </div>
                 </div>
                 <footer>

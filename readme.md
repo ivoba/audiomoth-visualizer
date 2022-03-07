@@ -4,6 +4,8 @@ Node.js pipeline in the console for spectrograms creation and [Birdnet](https://
 It will create a movie per audiofile with a spectrogram as image and utilizes birdnet AI to detect bird species.  
 The HTML page lists all movies and renders the birdnet detections.
 
+Example result: [https://audiomoth.ivo-bathke.name](https://audiomoth.ivo-bathke.name/)
+
 ![](audiomoth-visualizer.png)
 
 ![](asciinema.svg)
@@ -75,8 +77,11 @@ https://github.com/nwolek/audiomoth-scripts
 
 - responsive images
 - responsive video
+- use https://github.com/kahst/BirdNET-Lite
+- with https://www.tensorflow.org/js/
 - docker image in npx? will the image be pulled?
 - docker user permissions on birdnet files
   ` --user $(id -u):$(id -g)`
   user should be used in docker image
-- tests
+- tests: https://dev.to/shadowtime2000/testing-command-line-tools-47bk
+- https://engineering.britebill.com/2018/10/30/end-to-end-testing-cli-apps-jest.html
