@@ -83,5 +83,12 @@ https://github.com/nwolek/audiomoth-scripts
 - docker user permissions on birdnet files
   ` --user $(id -u):$(id -g)`
   user should be used in docker image
+  https://github.com/kahst/BirdNET/issues/23
 - tests: https://dev.to/shadowtime2000/testing-command-line-tools-47bk
 - https://engineering.britebill.com/2018/10/30/end-to-end-testing-cli-apps-jest.html
+- show percentage of detection
+- scroll to top link on bottom
+- paging?
+- chunking for too many files
+- fix Changelog generation
+- check why there are less files rendered then in audios

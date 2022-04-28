@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <title>Audiomoth Spectogram Generator</title>
+    <script>
+        window.onkeyup = function (e) {
+            if (e.key === "Escape") {
+                var o = document.querySelectorAll(".perfundo__overlay:target");
+                o[0].style.visibility = 'hidden';
+                o[0].getElementsByTagName("video")[0].pause();
+            }
+        }
+    </script>
 </head>
 <body>
 <nav class="container-fluid head">
