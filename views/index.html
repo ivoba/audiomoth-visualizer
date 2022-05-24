@@ -41,6 +41,8 @@
     <div>
         <h2 style="margin-bottom: 2px;">{{ title }}</h2>
         <div><span firstDate>{{files}}</span> - <span lastDate>{{files}}</span></div>
+        <div>Lat: {{location.lat}} Lng: {{location.lng}}</div>
+        <div>Files: <span filesCount>{{files}}</span></div>
     </div>
     <if condition="location.lat">
     <div>
@@ -72,7 +74,7 @@
                             <each loop="birds, seconds in file.birdnet">
                                 <div class="strong">Seconds {{seconds}}:</div>
                                 <each loop="bird in birds">
-                                    {{bird.rank}}: {{bird.specie}}<br/>
+                                    {{bird.rank}}: {{bird.specie}} (<span title="{{bird.confidence}}" roundConfidence>{{bird.confidence}}</span>)<br/>
                                 </each>
                             </each>
                             </div>
@@ -85,7 +87,7 @@
                         <each loop="birds, seconds in file.birdnet">
                             <div class="strong">Seconds {{seconds}}:</div>
                             <each loop="bird in birds">
-                                {{bird.rank}}: {{bird.specie}}<br/>
+                                {{bird.rank}}: {{bird.specie}} (<span title="{{bird.confidence}}" roundConfidence>{{bird.confidence}}</span>)<br/>
                             </each>
                         </each>
                     </if>
