@@ -95,5 +95,4 @@ https://github.com/nwolek/audiomoth-scripts
 - paging?
 - chunking for too many files
 - fix Changelog generation
-- check why there are less files rendered then in audios
 - input date -> output date options
