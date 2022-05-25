@@ -1,6 +1,6 @@
 {
   "name": "audiomoth-visualizer",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Pipeline for spectrograms and birdnet detection for audiomoth sessions.",
   "main": "./index.mjs",
   "scripts": {
