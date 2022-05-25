@@ -38,10 +38,11 @@
     "zx": "^6.1.0"
   },
   "devDependencies": {
-    "prettier": "^2.5.1",
-    "release-it": "^14.12.4",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "prettier": "^2.5.1",
+    "release-it": "^14.12.4",
     "semantic-release": "^19.0.2"
   },
   "bugs": {
@@ -70,7 +71,6 @@
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
       "@semantic-release/git"
-    ],
-    "dryRun": true
+    ]
   }
 }
