@@ -86,47 +86,59 @@ const manifest = {
   files: [],
 };
 
-await Promise.all(
-  files.map(async (audioFile) => {
-    let file = `${dir}/${audioFile}`;
-    let destAudioFile = `${audiosDir}/${audioFile}`;
-    fs.copyFileSync(file, `${dest}/${destAudioFile}`);
-    let baseFileName = path.basename(`${dir}/${file}`, ".WAV");
-    let thumbFile = `${baseFileName}.png`;
-    let thumb = `${thumbsPath}/${thumbFile}`;
-    let movieFile = `${baseFileName}.mp4`;
-    let movie = `${moviesPath}/${movieFile}`;
-    let totalDuration = parseInt(await $`soxi -D ${file}`);
-    let thumbMaxDuration = 30;
-    let date = await fs.stat(file);
-    if (totalDuration < thumbMaxDuration) thumbMaxDuration = totalDuration;
-    // make movie
-    await createMovieFrames(
-      dir,
-      file,
-      baseFileName,
-      totalDuration,
-      thumbMaxDuration,
-      title,
-      date,
-      thumb
-    );
-    console.log("creating full length movie...");
-    await $`ffmpeg -loglevel panic -framerate 1/${thumbMaxDuration} -i ${dir}/tmp_${baseFileName}%d.png -i ${file} -c:v libx264 -y -crf 23 -pix_fmt yuv420p ${movie}`;
-    // remove tmp files
-    let regex = new RegExp("^tmp_.*png$");
-    fs.readdirSync(dir)
-      .filter((f) => regex.test(f))
-      .map((f) => fs.unlinkSync(`${dir}/${f}`));
-    manifest.files.push({
-      base: baseFileName,
-      audio: `${destAudioFile}`,
-      thumb: `${imagesDir}/${thumbsDir}/${thumbFile}`,
-      movie: `${moviesDir}/${movieFile}`,
-      record_date: date.mtime.toISOString(),
-    });
-  })
-);
+const chunk = (arr, size) =>
+  arr.reduce(
+    (acc, e, i) => (
+      i % size ? acc[acc.length - 1].push(e) : acc.push([e]), acc
+    ),
+    []
+  );
+
+const chunks = chunk(files, 10);
+
+for (const chunk of chunks) {
+  await Promise.all(
+    chunk.map(async (audioFile) => {
+      let file = `${dir}/${audioFile}`;
+      let destAudioFile = `${audiosDir}/${audioFile}`;
+      fs.copyFileSync(file, `${dest}/${destAudioFile}`);
+      let baseFileName = path.basename(`${dir}/${file}`, ".WAV");
+      let thumbFile = `${baseFileName}.png`;
+      let thumb = `${thumbsPath}/${thumbFile}`;
+      let movieFile = `${baseFileName}.mp4`;
+      let movie = `${moviesPath}/${movieFile}`;
+      let totalDuration = parseInt(await $`soxi -D ${file}`);
+      let thumbMaxDuration = 30;
+      let date = await fs.stat(file);
+      if (totalDuration < thumbMaxDuration) thumbMaxDuration = totalDuration;
+      await createMovieFrames(
+        dir,
+        file,
+        baseFileName,
+        totalDuration,
+        thumbMaxDuration,
+        title,
+        date,
+        thumb
+      );
+      console.log(`creating full length movie: ${movie}`);
+      await $`ffmpeg -loglevel panic -framerate 1/${thumbMaxDuration} -i ${dir}/tmp_${baseFileName}%d.png -i ${file} -c:v libx264 -y -crf 23 -pix_fmt yuv420p ${movie}`;
+      manifest.files.push({
+        base: baseFileName,
+        audio: `${destAudioFile}`,
+        thumb: `${imagesDir}/${thumbsDir}/${thumbFile}`,
+        movie: `${moviesDir}/${movieFile}`,
+        record_date: date.mtime.toISOString(),
+      });
+    })
+  );
+  console.log("Processed chunk:", chunk);
+}
+console.log("Removing tmp files...");
+let regex = new RegExp("^tmp_.*png$");
+fs.readdirSync(dir)
+  .filter((f) => regex.test(f))
+  .map((f) => fs.unlinkSync(`${dir}/${f}`));
 
 // sort files in manifest
 manifest.files.sort((a, b) =>
