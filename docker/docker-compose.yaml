@@ -2,7 +2,7 @@
 version: "3"
 services:
   birdnet:
-    image: breallis/birdnet:cpu
+    image: ivoba/birdnet:1.0.0
     volumes:
       - ../files/Kloster-Burbach:/audio
     stdin_open: true

@@ -81,7 +81,6 @@ https://github.com/nwolek/audiomoth-scripts
 
 - responsive images
 - responsive video
-- use https://github.com/kahst/BirdNET-Lite
 - with https://www.tensorflow.org/js/
 - docker image in npx? will the image be pulled?
 - docker user permissions on birdnet files
@@ -91,6 +90,7 @@ https://github.com/nwolek/audiomoth-scripts
 - tests: https://dev.to/shadowtime2000/testing-command-line-tools-47bk
 - https://engineering.britebill.com/2018/10/30/end-to-end-testing-cli-apps-jest.html
 - print percentage of detection
+- create a clean task to delete all files with no detection
 - scroll to top link on bottom
 - paging?
 - chunking for too many files

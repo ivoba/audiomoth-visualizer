@@ -145,7 +145,7 @@ manifest.files.sort((a, b) =>
   a.audio > b.audio ? 1 : b.audio > a.audio ? -1 : 0
 );
 
-await birdnet(dest, audiosDir, "birdnet", manifest);
+await birdnet(dest, audiosDir, "birdnet", manifest, locale.substr(0, 2).toLowerCase());
 
 await updateManifestWithBirdnetData(dest, manifest);
 await fs.writeJson(`${dest}/manifest.json`, manifest);
