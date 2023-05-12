@@ -93,6 +93,5 @@ https://github.com/nwolek/audiomoth-scripts
 - create a clean task to delete all files with no detection
 - scroll to top link on bottom
 - paging?
-- chunking for too many files
 - fix Changelog generation
 - input date -> output date options
