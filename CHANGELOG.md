@@ -1,5 +1,10 @@
 ## [1.3.3](https://github.com/ivoba/audiomoth-visualizer/compare/1.3.2...1.3.3) (2022-05-25)
 
+* switched to tflite model of https://github.com/kahst/BirdNET-Analyzer in docker image ivoba/birdnet
+
+
+## [1.3.3](https://github.com/ivoba/audiomoth-visualizer/compare/1.3.2...1.3.3) (2022-05-25)
+
 
 
 ## [1.3.2](https://github.com/ivoba/audiomoth-visualizer/compare/1.3.1...1.3.2) (2022-05-25)
