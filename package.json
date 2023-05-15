@@ -1,6 +1,6 @@
 {
   "name": "audiomoth-visualizer",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Pipeline for spectrograms and birdnet detection for audiomoth sessions.",
   "main": "./index.mjs",
   "scripts": {
@@ -38,12 +38,7 @@
     "zx": "^6.1.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/release-notes-generator": "^10.0.3",
-    "prettier": "^2.5.1",
-    "release-it": "^14.12.4",
-    "semantic-release": "^19.0.2"
+    "prettier": "^2.5.1"
   },
   "bugs": {
     "url": "https://github.com/ivoba/audiomoth-visualizer/issues"
@@ -56,33 +51,5 @@
     "*.mjs",
     "lib",
     "views"
-  ],
-  "release": {
-    "requireCleanWorkingDir": false,
-    "requireUpstream": false,
-    "debug": "true",
-    "npm": {
-      "publish": false
-    },
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "package.json",
-            "CHANGELOG.md"
-          ],
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ]
-    ]
-  }
+  ]
 }
